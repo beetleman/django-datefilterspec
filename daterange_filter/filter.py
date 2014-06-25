@@ -19,13 +19,18 @@ class DateRangeForm(forms.Form):
         super(DateRangeForm, self).__init__(*args, **kwargs)
 
         self.fields['%s__gte' % field_name] = forms.DateField(
-            label='', widget=AdminDateWidget(
-                attrs={'placeholder': _('From date')}), localize=True,
+            label='',
+            widget=AdminDateWidget(
+                attrs={'placeholder': _('From date'), 'type': 'date'}
+            ),
+            localize=True,
             required=False)
 
         self.fields['%s__lte' % field_name] = forms.DateField(
-            label='', widget=AdminDateWidget(
-                attrs={'placeholder': _('To date')}), localize=True,
+            label='',
+            widget=AdminDateWidget(
+                attrs={'placeholder': _('To date'), 'type': 'date'}),
+            localize=True,
             required=False)
 
 
@@ -35,12 +40,12 @@ class DateTimeRangeForm(forms.Form):
         field_name = kwargs.pop('field_name')
         super(DateTimeRangeForm, self).__init__(*args, **kwargs)
         self.fields['%s__gte' % field_name] = forms.DateTimeField(
-                                label='',
-                                widget=AdminSplitDateTime(
-                                    attrs={'placeholder': _('From Date')}
-                                ),
-                                localize=True,
-                                required=False)
+            label='',
+            widget=AdminSplitDateTime(
+                attrs={'placeholder': _('From Date'), 'type': 'datetime'}
+            ),
+            localize=True,
+            required=False)
 
 
 class DateRangeFilter(admin.filters.FieldListFilter):
